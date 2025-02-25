@@ -8,11 +8,16 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        title:["poppins"]
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui')
+  ],
 } satisfies Config;
