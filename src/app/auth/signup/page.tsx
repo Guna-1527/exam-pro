@@ -19,8 +19,6 @@ function SignUp() {
   // const [error, setError] = useState<string | null>(null);
   // const router = useRouter();
 
-  const notify = () => toast("Here is your toast.");
-
   const handleRegister = async (e: any) => {
     e.preventDefault();
     try {
@@ -32,20 +30,17 @@ function SignUp() {
           firstName: firstName,
           lastName: lastName,
         });
-        {
-          notify;
-        }
+        toast.success("Sign up successfully");
         console.log(user);
       }
     } catch (error) {
-      console.log(error);
+      toast.error("something went wrong.")
     }
   };
 
   return (
     <div className="w-screen h-screen flex flex-row font-title">
-      <button onClick={notify}>asf</button>
-      <div className="flex-1 w-screen h-screen flex flex-col justify-between p-16 items-center">
+      <div className="flex-1 w-screen h-screen flex flex-col justify-around p-14 items-center">
         <div className="flex justify-between w-full">
           <img
             className="w-[40px] h-[40px]"
@@ -119,7 +114,7 @@ function SignUp() {
             Create Account
           </button>
         </div>
-        <div className="h-[.5] bg-gray-200 mt-6 w-[56%]"></div>
+        <div className="h-[.5] bg-gray-200 mt-10 w-[56%]"></div>
         <div>
           <div className="flex gap-4">
             <button className="flex px-4 py-3 border border-gray-200 rounded-lg items-center gap-4 text-xs">
@@ -147,7 +142,7 @@ function SignUp() {
           <Image src={sign} alt="Sign up cover image" />
         </div>
       </div>
-      <Toaster />
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }
