@@ -1,8 +1,44 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import sign from "../../../../public/asset/img/dd.png";
+import { useState, useEffect } from "react";
+//import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "@/app/lib/Firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 function SignUp() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleRegister = async (e: any) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      if (user) {
+        await setDoc(doc(db, "Users", user.uid), {
+          email: user.email,
+          firstName: firstName,
+          lastName: lastName,
+        });
+      }
+
+      useEffect(() => {
+        router.push("/student/dashboard"); // Example redirect
+      }, [router]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-screen h-screen flex flex-row font-title">
       <div className="flex-1 w-screen h-screen flex flex-col justify-between p-16 items-center">
@@ -13,10 +49,14 @@ function SignUp() {
             alt=""
           />
           <div className="flex">
-            <p className="text-[12px]">
-              Already have an account?{"  "}
-            </p>
-            <Link className="link link-neutral text-[12px] font-bold" href={"d"}> {" "}Join</Link>
+            <p className="text-[12px]">Already have an account?{"  "}</p>
+            <Link
+              className="link link-neutral text-[12px] font-bold"
+              href={"d"}
+            >
+              {" "}
+              Join
+            </Link>
           </div>
         </div>
         <div className="flex flex-col p-4 gap-5 w-3/5 h-3/5">
@@ -29,7 +69,9 @@ function SignUp() {
               <input
                 type="text"
                 placeholder=""
-                className="input h-7 bg-[#F5F5F5] rounded-md w-full max-w-xs"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="input text-xs h-10 bg-[#F5F5F5] rounded-md w-full max-w-xs"
               />
             </div>
             <div className="flex flex-col flex-1 gap-2">
@@ -39,7 +81,9 @@ function SignUp() {
               <input
                 type="text"
                 placeholder=""
-                className="input h-7 bg-[#F5F5F5] rounded-md w-full max-w-xs"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="input text-xs h-10 bg-[#F5F5F5] rounded-md w-full max-w-xs"
               />
             </div>
           </div>
@@ -48,7 +92,9 @@ function SignUp() {
             <input
               type="email"
               placeholder=""
-              className="input h-7 bg-[#F5F5F5] rounded-md w-full"
+              className="input text-xs h-10 bg-[#F5F5F5] rounded-md w-full"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="email flex flex-col gap-2">
@@ -56,11 +102,16 @@ function SignUp() {
             <input
               type="password"
               placeholder=""
-              className="input h-7 bg-[#F5F5F5] rounded-md w-full"
+              className="input h-10 bg-[#F5F5F5] rounded-md w-full"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <p className="text-[10px]">forget password?</p>
           </div>
-          <button className="btn btn-neutral text-[14px] font-semibold">
+          <button
+            onClick={handleRegister}
+            className="btn btn-neutral text-[14px] font-semibold"
+          >
             Create Account
           </button>
         </div>
