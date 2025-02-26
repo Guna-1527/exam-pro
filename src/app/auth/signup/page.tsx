@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "@/app/lib/Firebase";
 import { setDoc, doc } from "firebase/firestore";
+import toast, { Toaster } from "react-hot-toast";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -16,7 +17,9 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  // const router = useRouter();
+
+  const notify = () => toast("Here is your toast.");
 
   const handleRegister = async (e: any) => {
     e.preventDefault();
@@ -29,11 +32,11 @@ function SignUp() {
           firstName: firstName,
           lastName: lastName,
         });
+        {
+          notify;
+        }
+        console.log(user);
       }
-
-      useEffect(() => {
-        router.push("/student/dashboard"); // Example redirect
-      }, [router]);
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +44,7 @@ function SignUp() {
 
   return (
     <div className="w-screen h-screen flex flex-row font-title">
+      <button onClick={notify}>asf</button>
       <div className="flex-1 w-screen h-screen flex flex-col justify-between p-16 items-center">
         <div className="flex justify-between w-full">
           <img
@@ -143,6 +147,7 @@ function SignUp() {
           <Image src={sign} alt="Sign up cover image" />
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
