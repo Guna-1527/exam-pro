@@ -1,16 +1,26 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import Navbar from "@/app/component/Navbar";
 
 const Home = () => {
+  const router = useRouter();
 
- 
+  const handleRoute = () => {
+    router.push("/auth/signup");
+  };
+
   return (
     <div>
-      <h1>Home page</h1>
-      <Button variant="outline">Button</Button>
-
+      <div>
+        <Navbar />
+      </div>
+      <Button variant="outline" onClick={handleRoute}>
+        Button
+      </Button>
     </div>
   );
-}
-
+};
 
 export default Home;
