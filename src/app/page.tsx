@@ -1,16 +1,17 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Navbar, Hero } from "@/app/component/index";
+import { Navbar, Hero, Guide } from "@/app/component/index";
 
 const Home = () => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div>
         <Navbar />
         <Hero />
+        <Guide />
       </div>
     </div>
   );
