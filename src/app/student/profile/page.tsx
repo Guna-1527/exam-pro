@@ -9,9 +9,9 @@ const Profile = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
 
-  /*if (!user) {
-    router.push("/auth/login");
-  }*/
+  if (!user) {
+    router.push("/student/dashboard");
+  }
 
   const handleLogout = async () => {
     try {

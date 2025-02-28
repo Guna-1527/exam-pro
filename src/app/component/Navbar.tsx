@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import { auth } from "../lib/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../../public/asset/img/exam-png-transparent-image.png";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -22,43 +24,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-400 shadow-md">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a>Homepage</a>
-            </li>
-            <li>
-              <a>Portfolio</a>
-            </li>
-            <li>
-              <a>About</a>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-center">
-          <Link href="/" className="btn btn-ghost text-xl">
-            daisyUI
+    <div className="navbar bg-base-400 px-5 shadow-md">
+      <div className="navbar-start px-5">
+        <div className="navbar-center flex gap-1">
+          <Image
+            src={Logo}
+            alt="logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
+          <Link href="/" className="btn btn-ghost text-xl font-bold">
+            We<span className="text-[#FCA510]">SP</span>
           </Link>
         </div>
       </div>
@@ -102,13 +79,13 @@ const Navbar = () => {
         {!user ? (
           <div className="flex gap-4">
             <button
-              className="bg-[#2B3440] px-4 py-2 rounded-md text-white font-semibold text-sm"
+              className="bg-[#ffedce] px-4 py-2 rounded-md text-[#FCA510] font-semibold text-sm"
               onClick={handleLogin}
             >
               Login
             </button>
             <button
-              className="bg-[#2B3440] px-4 py-2 rounded-md text-white font-semibold text-sm"
+              className="bg-[#FCA510] px-4 py-2 rounded-md text-white font-semibold text-sm"
               onClick={handleRegister}
             >
               Signup
@@ -129,3 +106,40 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+/*
+
+<div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
+            <li>
+              <a>Homepage</a>
+            </li>
+            <li>
+              <a>Portfolio</a>
+            </li>
+            <li>
+              <a>About</a>
+            </li>
+          </ul>
+        </div> 
+
+*/

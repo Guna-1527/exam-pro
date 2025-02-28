@@ -1,4 +1,4 @@
-import Navbar from "../../component/Navbar";
+import { Navbar, Hero } from "../../component/index";
 
 const Dashboard = () => {
   return (

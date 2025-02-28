@@ -1,24 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import Navbar from "@/app/component/Navbar";
+import { Navbar, Hero } from "@/app/component/index";
 
 const Home = () => {
   const router = useRouter();
-
-  const handleRoute = () => {
-    router.push("/auth/signup");
-  };
 
   return (
     <div>
       <div>
         <Navbar />
+        <Hero />
       </div>
-      <Button variant="outline" onClick={handleRoute}>
-        Button
-      </Button>
     </div>
   );
 };
