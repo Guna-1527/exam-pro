@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Navbar, Hero, Guide } from "@/app/component/index";
+import Footer from "./component/Footer";
 
 const Home = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const Home = () => {
         <Navbar />
         <Hero />
         <Guide />
+        <Footer />
       </div>
     </div>
   );
