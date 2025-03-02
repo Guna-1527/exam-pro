@@ -20,7 +20,7 @@ const Question: React.FC<QuestionProps> = ({ questions, options }) => {
   };
 
   return (
-    <div className="font-title">
+    <div className="font-title bg-gray-100">
       {/* Navbar */}
       <div className="w-screen h-[40px] bg-gray-300 flex justify-between items-center px-6 md:px-10">
         <div className="flex items-center gap-3">
@@ -28,9 +28,19 @@ const Question: React.FC<QuestionProps> = ({ questions, options }) => {
             className="bg-gray-700 text-white p-1 rounded-full"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            {isSidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
+            {isSidebarOpen ? (
+              <ChevronLeft size={20} />
+            ) : (
+              <ChevronRight size={20} />
+            )}
           </button>
-          <Image src={Logo} alt="logo" width={30} height={30} className="object-contain" />
+          <Image
+            src={Logo}
+            alt="logo"
+            width={30}
+            height={30}
+            className="object-contain"
+          />
           <p className="text-sm md:text-base">WeSP</p>
         </div>
         <div className="flex gap-2 items-center justify-center w-[100px] h-[30px]">
@@ -43,41 +53,50 @@ const Question: React.FC<QuestionProps> = ({ questions, options }) => {
       <div className="flex">
         {/* Sidebar */}
         <div
-          className={`top-[40px] left-0 h-[calc(100vh-40px)] bg-blue-200 transition-all duration-300 z-50 ${
+          className={`top-[40px] flex flex-col justify-between left-0 h-[calc(100vh-40px)] transition-all bg-gray-300 duration-300 z-50 ${
             isSidebarOpen ? "w-[250px]" : "w-[60px]"
           } p-4`}
         >
-          <p className={`mb-2 text-sm md:text-base ${isSidebarOpen ? "" : "hidden"}`}>Questions</p>
-          <div className={`flex gap-4 flex-wrap ${isSidebarOpen ? "" : "hidden"}`}>
-            {[...Array(12)].map((_, index) => (
-              <div
-                key={index}
-                className="w-[30px] h-[30px] bg-gray-800 text-white text-sm md:text-base rounded-full flex items-center justify-center"
-              >
-                {index + 1}
-              </div>
-            ))}
+          <div>
+            <p
+              className={`mb-2 text-sm md:text-base ${
+                isSidebarOpen ? "" : "hidden"
+              }`}
+            >
+              Questions
+            </p>
+            <div
+              className={`flex gap-4 flex-wrap ${
+                isSidebarOpen ? "" : "hidden"
+              }`}
+            >
+              show question
+            </div>
+          </div>
+          <div className="flex w-full bg-blue-500 text-white p-1 rounded-md justify-center border-2 border-blue-500">
+            <button>Submit</button>
           </div>
         </div>
 
         {/* Main Quiz Section */}
         <div
-          className={`transition-all duration-300 p-4 ${
+          className={`transition-all flex flex-col justify-between h-[calc(100vh-40px)] duration-300 p-4 ${
             isSidebarOpen ? "w-[70%]" : "ml-0 w-full"
           }`}
         >
-          <div className="rightHeader">
-            <p className="mb-1 text-sm md:text-base">Header</p>
-            <hr />
-          </div>
-          <div className="questionsBox h-[150px] mt-5 font-normal text-sm md:text-base">
-            <p>{questions}</p>
+          <div>
+          <div className="shadow-lg p-2 bg-white rounded-lg">
+            <div className="rightHeader">
+              <p className="mb-1 text-sm md:text-base">Header</p>
+              <hr />
+            </div>
+            <div className="questionsBox h-[150px] mt-5 font-normal text-sm md:text-base">
+              <p>{questions}</p>
+            </div>
           </div>
           <hr />
-
-          {/* Styled Radio Buttons with Reduced Height */}
           <div className="options">
-            <p className="text-sm md:text-base">Options</p>
+            <p className="text-sm md:text-base mt-4">Options</p>
             <div className="flex flex-col gap-2 mt-4">
               {options.map((option) => (
                 <label
@@ -101,12 +120,18 @@ const Question: React.FC<QuestionProps> = ({ questions, options }) => {
                   <div
                     className={`w-3.5 h-3.5 md:w-4 md:h-4 rounded-full border flex items-center justify-center transition-all
                       ${
-                        selectedOption === option ? "border-white bg-white" : "border-gray-500 bg-transparent"
+                        selectedOption === option
+                          ? "border-white bg-white"
+                          : "border-gray-500 bg-transparent"
                       }`}
                   >
                     <div
                       className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all
-                        ${selectedOption === option ? "bg-blue-500" : "bg-transparent"}`}
+                        ${
+                          selectedOption === option
+                            ? "bg-blue-500"
+                            : "bg-transparent"
+                        }`}
                     ></div>
                   </div>
                   {option}
@@ -114,6 +139,11 @@ const Question: React.FC<QuestionProps> = ({ questions, options }) => {
               ))}
             </div>
           </div>
+          </div>
+            <div className="flex justify-between px-6">
+              <button className="bg-blue-500 text-white p-2 rounded-lg">previous</button>
+              <button className="bg-blue-500 text-white p-2 rounded-lg">next</button>
+            </div>
         </div>
       </div>
     </div>
