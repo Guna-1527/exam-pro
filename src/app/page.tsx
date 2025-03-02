@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Navbar, Hero, Guide } from "@/app/component/index";
-import Footer from "./component/Footer";
+import { Navbar, Hero, Guide } from "@/app/components/index";
+import Footer from "./components/Footer";
 
 const Home = () => {
   const router = useRouter();
