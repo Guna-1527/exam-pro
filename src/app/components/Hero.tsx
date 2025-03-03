@@ -12,9 +12,9 @@ const Hero = () => {
     router.push("/auth/signup");
   };
   return (
-    <div className="w-screen h-[calc(100vh-70px)]">
+    <div className="w-screen h-screen">
       <div className="flex">
-        <div className="w-full gap-4 p-12 h-[calc(100vh-70px)] flex flex-1 justify-center items-start flex-col">
+        <div className="w-full gap-4 p-12 h-screen flex flex-1 justify-center items-start flex-col">
           <div className="flex flex-col gap-3">
             <div className=" flex gap-3">
               <div className="w-[5px] h-[5px] rounded-full bg-slate-400"></div>

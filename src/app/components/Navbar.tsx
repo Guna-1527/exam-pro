@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-400 px-5 shadow-md">
+    <div className="navbar bg-white shadow-md px-5 fixed z-50">
       <div className="navbar-start px-5">
         <div className="navbar-center flex gap-1">
           <Image
@@ -57,7 +57,7 @@ const Navbar = () => {
             />
           </svg>
         </button>
-        <button className="btn btn-ghost btn-circle">
+        {user ? <button className="btn btn-ghost btn-circle">
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ const Navbar = () => {
             </svg>
             <span className="badge badge-xs bg-[#FCA510] indicator-item"></span>
           </div>
-        </button>
+        </button> : <div></div>}
         {!user ? (
           <div className="flex gap-4">
             <button
